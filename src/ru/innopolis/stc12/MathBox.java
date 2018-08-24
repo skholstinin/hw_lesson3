@@ -1,7 +1,6 @@
 package ru.innopolis.stc12;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /*
 * Написать класс MathBox , реализующий следующий функционал:
@@ -24,35 +23,43 @@ import java.util.List;
 * */
 public class MathBox {
 
-    private List<Integer> myList = new ArrayList<>();
+    private final List<Integer> myList = new ArrayList<>();
 
+    private final SortedSet<Integer> myTreeSet = new TreeSet<>();
 
-    public MathBox(int array[]) {
-
-
+    /*public MathBox(int array[]) {//конструктор для обычного массива ортировкой внутри
         for (int i = 0; i < array.length; i++) {
             myList.add(i, array[i]);
         }
         System.out.println(myList);
         myList.clear();
-
         bubleSort(array);
         for (int i = 0; i < array.length; i++) {
             myList.add(i, array[i]);
         }
         System.out.println(myList);
+    }*/
+
+
+    public MathBox(int array[]) {//конструктор для TreeSet
+
+        for (int i = 0; i < array.length; i++) {
+            myTreeSet.add(array[i]);//TreeSet добавит в себя только уникальные значения и отсортирует их
+        }
     }
 
+
     public int summator() {
+        List<Integer> tempTreeSet = new ArrayList<Integer>(myTreeSet);//TreeSet сортирует и не даёт зписать одинаковые элементы.Как получить доступ к элементам-пока непонятно.
+        //Поэтому приводим его к ArrayList.
         int sum = 0;
-        int i;
-        for (i = 0; i < myList.size(); i++) {
-            sum += (int) myList.get(i);
+        for (int i = 0; i < tempTreeSet.size(); i++) {
+            sum += (int) tempTreeSet.get(i);
         }
         return sum;
     }
 
-    public void bubleSort(int arr[]) {
+    public void bubleSort(int arr[]) {//только для конструктора с ArrayList внутри
         for (int i = arr.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j + 1]) {
@@ -65,15 +72,37 @@ public class MathBox {
     }
 
     public void searchAndRemoveItem(Integer item) {
-        myList.remove(item);
+        myTreeSet.remove(item);
     }
 
     public List splitter(int divider) {
+        List<Integer> ArrayList = new ArrayList<Integer>(myTreeSet);
         List localList = new ArrayList();
-        for (int i = 0; i < myList.size(); i++) {
-            localList.add(i, (int) myList.get(i) / divider);
+        for (int i = 0; i < ArrayList.size(); i++) {
+            localList.add(i, (int) ArrayList.get(i) / divider);
         }
-
         return localList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MathBox mathBox = (MathBox) o;
+        return Objects.equals(myList, mathBox.myList) &&
+                Objects.equals(myTreeSet, mathBox.myTreeSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "MathBox{" +
+                "myList=" + myList +
+                ", myTreeSet=" + myTreeSet +
+                '}';
     }
 }
