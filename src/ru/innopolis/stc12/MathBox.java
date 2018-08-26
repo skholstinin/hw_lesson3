@@ -23,9 +23,9 @@ import java.util.*;
 * */
 public class MathBox {
 
-    private final List<Integer> myList = new ArrayList<>();
+    private final List<Integer> objectList = new ArrayList<>();
 
-    private final SortedSet<Integer> myTreeSet = new TreeSet<>();
+    private final SortedSet<Integer> numberTreeSet = new TreeSet<>();
 
     /*public MathBox(int array[]) {//конструктор для обычного массива ортировкой внутри
         for (int i = 0; i < array.length; i++) {
@@ -44,13 +44,17 @@ public class MathBox {
     public MathBox(int array[]) {//конструктор для TreeSet
 
         for (int i = 0; i < array.length; i++) {
-            myTreeSet.add(array[i]);//TreeSet добавит в себя только уникальные значения и отсортирует их
+            numberTreeSet.add(array[i]);//TreeSet добавит в себя только уникальные значения и отсортирует их
         }
+    }
+
+    public void addItem(Object o) {
+
     }
 
 
     public int summator() {
-        List<Integer> tempTreeSet = new ArrayList<Integer>(myTreeSet);//TreeSet сортирует и не даёт зписать одинаковые элементы.Как получить доступ к элементам-пока непонятно.
+        List<Integer> tempTreeSet = new ArrayList<Integer>(numberTreeSet);//TreeSet сортирует и не даёт зписать одинаковые элементы.Как получить доступ к элементам-пока непонятно.
         //Поэтому приводим его к ArrayList.
         int sum = 0;
         for (int i = 0; i < tempTreeSet.size(); i++) {
@@ -72,11 +76,11 @@ public class MathBox {
     }
 
     public void searchAndRemoveItem(Integer item) {
-        myTreeSet.remove(item);
+        numberTreeSet.remove(item);
     }
 
     public List splitter(int divider) {
-        List<Integer> ArrayList = new ArrayList<Integer>(myTreeSet);
+        List<Integer> ArrayList = new ArrayList<Integer>(numberTreeSet);
         List localList = new ArrayList();
         for (int i = 0; i < ArrayList.size(); i++) {
             localList.add(i, (int) ArrayList.get(i) / divider);
@@ -89,8 +93,8 @@ public class MathBox {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MathBox mathBox = (MathBox) o;
-        return Objects.equals(myList, mathBox.myList) &&
-                Objects.equals(myTreeSet, mathBox.myTreeSet);
+        return Objects.equals(objectList, mathBox.objectList) &&
+                Objects.equals(numberTreeSet, mathBox.numberTreeSet);
     }
 
     @Override
@@ -101,8 +105,8 @@ public class MathBox {
     @Override
     public String toString() {
         return "MathBox{" +
-                "myList=" + myList +
-                ", myTreeSet=" + myTreeSet +
+                "myList=" + objectList +
+                ", myTreeSet=" + numberTreeSet +
                 '}';
     }
 }
