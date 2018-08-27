@@ -27,18 +27,6 @@ public class MathBox {
 
     private final SortedSet<Integer> numberTreeSet = new TreeSet<>();
 
-    /*public MathBox(int array[]) {//конструктор для обычного массива ортировкой внутри
-        for (int i = 0; i < array.length; i++) {
-            myList.add(i, array[i]);
-        }
-        System.out.println(myList);
-        myList.clear();
-        bubleSort(array);
-        for (int i = 0; i < array.length; i++) {
-            myList.add(i, array[i]);
-        }
-        System.out.println(myList);
-    }*/
 
 
     public MathBox(int array[]) {//конструктор для TreeSet
@@ -54,11 +42,9 @@ public class MathBox {
 
 
     public int summator() {
-        List<Integer> tempTreeSet = new ArrayList<Integer>(numberTreeSet);//TreeSet сортирует и не даёт зписать одинаковые элементы.Как получить доступ к элементам-пока непонятно.
-        //Поэтому приводим его к ArrayList.
         int sum = 0;
-        for (int i = 0; i < tempTreeSet.size(); i++) {
-            sum += (int) tempTreeSet.get(i);
+        for (int i = 0; i < numberTreeSet.size(); i++) {
+            sum += (int) numberTreeSet.toArray()[i];
         }
         return sum;
     }
