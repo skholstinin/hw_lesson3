@@ -66,10 +66,10 @@ public class MathBox {
     }
 
     public List splitter(int divider) {
-        List<Integer> ArrayList = new ArrayList<Integer>(numberTreeSet);
         List localList = new ArrayList();
-        for (int i = 0; i < ArrayList.size(); i++) {
-            localList.add(i, (int) ArrayList.get(i) / divider);
+        for (int i = 0; i < numberTreeSet.size(); i++) {
+            localList.add((int) numberTreeSet.toArray()[i] / divider);
+
         }
         return localList;
     }

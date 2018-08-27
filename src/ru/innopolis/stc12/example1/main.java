@@ -5,7 +5,7 @@ public class main {
 
         Object myArray[] = {0, 1, 5, 6, 7, 89};
         MathBox mathBox = new MathBox(myArray);
-        mathBox.addItem("Name");
+        mathBox.addItem(29);
         System.out.println(mathBox.summator());
     }
 }

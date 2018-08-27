@@ -44,7 +44,7 @@ public class main {
         System.out.printf("Сумма после удаления=");
         System.out.println(mathBox.summator());//суммируем элементы массива
 
-        System.out.println(mathBox.splitter(1));//деление элементов
+        System.out.println(mathBox.splitter(2));//деление элементов
 
 
     }
