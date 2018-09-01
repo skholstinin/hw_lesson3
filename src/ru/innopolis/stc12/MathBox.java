@@ -26,9 +26,7 @@ public class MathBox {
     private final SortedSet<Integer> numberTreeSet = new TreeSet<>();
 
     public MathBox(ArrayList<Integer> array) {//конструктор для TreeSet
-        System.out.println("Constructor");
         numberTreeSet.addAll(array);//TreeSet добавит в себя только уникальные значения и отсортирует их
-        System.out.println(numberTreeSet);
 
     }
 
@@ -66,7 +64,6 @@ public class MathBox {
         ArrayList<Integer> localList = new ArrayList();
         for (Integer s : numberTreeSet) {
             localList.add(s / divider);
-            System.out.println(localList);
         }
         return localList;
     }
