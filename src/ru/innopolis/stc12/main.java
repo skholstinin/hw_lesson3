@@ -17,30 +17,31 @@ package ru.innopolis.stc12;
 * */
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class main {
     public static void main(String[] args) {
         Random random = new Random();
-        int[] myArray = new int[100];//создаём массив
+        ArrayList<Integer> myArray = new ArrayList<>();//создаём массив
         for (int i = 0; i < 100; i++) {//заполняем неповторяющимися элементами
-            myArray[i] = random.nextInt(100);
+            myArray.add(random.nextInt(100));
         }
 
 
-        for (int i = myArray.length - 1; i > 0; i--) {//перемешиваем массив
+        for (Integer i : myArray) {//перемешиваем массив
             int j = random.nextInt(i + 1);
-            int temp = myArray[j];
-            myArray[j] = myArray[i];
-            myArray[i] = temp;
-            System.out.println(myArray[j]);
+            int temp = myArray.get(i);
+            myArray.set(j, myArray.get(i));
+            myArray.set(i, temp);
+            System.out.println(myArray.get(j));
         }
 
         MathBox mathBox = new MathBox(myArray);//конструктор с сортровкой внутри
 
         System.out.printf("Сумма до удаления=");
         System.out.println(mathBox.summator());//суммируем элементы массива
-        mathBox.searchAndRemoveItem(52);//удаляем элемент
+        mathBox.searchAndRemoveItem(51);//удаляем элемент
         System.out.printf("Сумма после удаления=");
         System.out.println(mathBox.summator());//суммируем элементы массива
 

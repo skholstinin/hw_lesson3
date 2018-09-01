@@ -23,28 +23,25 @@ import java.util.*;
 * */
 public class MathBox {
 
-    private final List<Integer> objectList = new ArrayList<>();
-
     private final SortedSet<Integer> numberTreeSet = new TreeSet<>();
 
+    public MathBox(ArrayList<Integer> array) {//конструктор для TreeSet
+        System.out.println("Constructor");
+        numberTreeSet.addAll(array);//TreeSet добавит в себя только уникальные значения и отсортирует их
+        System.out.println(numberTreeSet);
 
-
-    public MathBox(int array[]) {//конструктор для TreeSet
-
-        for (int i = 0; i < array.length; i++) {
-            numberTreeSet.add(array[i]);//TreeSet добавит в себя только уникальные значения и отсортирует их
-        }
     }
 
-    public void addItem(Object o) {
-
+    public void addItem(Integer item) {
+        numberTreeSet.add(item);
     }
 
 
     public int summator() {
+        Iterator<Integer> iterator = numberTreeSet.iterator();
         int sum = 0;
-        for (int i = 0; i < numberTreeSet.size(); i++) {
-            sum += (int) numberTreeSet.toArray()[i];
+        while (iterator.hasNext()) {
+            sum += iterator.next();
         }
         return sum;
     }
@@ -66,10 +63,10 @@ public class MathBox {
     }
 
     public List splitter(int divider) {
-        List localList = new ArrayList();
-        for (int i = 0; i < numberTreeSet.size(); i++) {
-            localList.add((int) numberTreeSet.toArray()[i] / divider);
-
+        ArrayList<Integer> localList = new ArrayList();
+        for (Integer s : numberTreeSet) {
+            localList.add(s / divider);
+            System.out.println(localList);
         }
         return localList;
     }
@@ -79,8 +76,7 @@ public class MathBox {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MathBox mathBox = (MathBox) o;
-        return Objects.equals(objectList, mathBox.objectList) &&
-                Objects.equals(numberTreeSet, mathBox.numberTreeSet);
+        return Objects.equals(numberTreeSet, mathBox.numberTreeSet);
     }
 
     @Override
@@ -91,7 +87,6 @@ public class MathBox {
     @Override
     public String toString() {
         return "MathBox{" +
-                "myList=" + objectList +
                 ", myTreeSet=" + numberTreeSet +
                 '}';
     }
